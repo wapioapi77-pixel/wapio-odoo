@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+connection_admin,Wapio connection administrator,model_wapio_connection,base.group_system,1,1,1,1
+session_admin,Wapio session administrator,model_wapio_session,base.group_system,1,1,1,1
+session_sender,Wapio sender sessions,model_wapio_session,group_wapio_user,1,0,0,0
+message_sender,Wapio sender messages,model_wapio_message,group_wapio_user,1,0,0,0
+message_admin,Wapio administrator messages,model_wapio_message,base.group_system,1,0,0,0
+compose_sender,Wapio message composer,model_wapio_compose,group_wapio_user,1,1,1,1

@@ -1,0 +1,41 @@
+<odoo>
+    <record id="connection_form" model="ir.ui.view">
+        <field name="name">wapio.connection.form</field>
+        <field name="model">wapio.connection</field>
+        <field name="arch" type="xml">
+            <form string="Wapio connection">
+                <header><button name="action_refresh_sessions" type="object" string="Test connection / Refresh sessions" class="oe_highlight"/></header>
+                <sheet>
+                    <div class="alert alert-info" role="status">This connector is free. A Wapio account and eligible service plan are required. Create your API key at www.wapio.io. Keys are stored in your Odoo database; restrict database and backup access.</div>
+                    <group><field name="name"/><field name="company_id"/><field name="api_key" password="True" groups="base.group_system"/></group>
+                    <field name="session_ids" readonly="1"><list><field name="name"/><field name="remote_id"/><field name="status"/></list></field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="connection_list" model="ir.ui.view">
+        <field name="name">wapio.connection.list</field><field name="model">wapio.connection</field>
+        <field name="arch" type="xml"><list><field name="name"/><field name="company_id"/></list></field>
+    </record>
+    <record id="message_list" model="ir.ui.view">
+        <field name="name">wapio.message.list</field><field name="model">wapio.message</field>
+        <field name="arch" type="xml"><list create="0" edit="0" delete="0"><field name="create_date"/><field name="recipient"/><field name="session_id"/><field name="state"/><field name="message_id"/><field name="company_id"/></list></field>
+    </record>
+    <record id="message_form" model="ir.ui.view">
+        <field name="name">wapio.message.form</field><field name="model">wapio.message</field>
+        <field name="arch" type="xml">
+            <form create="0" edit="0" delete="0">
+                <header><button name="action_retry" type="object" string="Retry same message" invisible="state != 'failed'" groups="wapio_whatsapp.group_wapio_user"/><field name="state" widget="statusbar"/></header>
+                <sheet>
+                    <div class="alert alert-info" role="status">Submitted means Wapio accepted the request; it does not confirm WhatsApp delivery. Retry this record after a failure to preserve its unique message ID.</div>
+                    <group><field name="name" string="Unique message ID"/><field name="recipient"/><field name="session_id"/><field name="owner_id"/><field name="company_id"/><field name="message_id"/><field name="error"/></group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="connection_action" model="ir.actions.act_window"><field name="name">Connections</field><field name="res_model">wapio.connection</field><field name="view_mode">list,form</field></record>
+    <record id="message_action" model="ir.actions.act_window"><field name="name">Outgoing messages</field><field name="res_model">wapio.message</field><field name="view_mode">list,form</field></record>
+    <menuitem id="menu_root" name="Wapio" groups="group_wapio_user,base.group_system" sequence="90"/>
+    <menuitem id="menu_messages" name="Outgoing messages" parent="menu_root" action="message_action" groups="group_wapio_user,base.group_system"/>
+    <menuitem id="menu_connections" name="Connections" parent="menu_root" action="connection_action" groups="base.group_system"/>
+</odoo>

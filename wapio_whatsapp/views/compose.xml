@@ -1,0 +1,18 @@
+<odoo>
+    <record id="compose_form" model="ir.ui.view">
+        <field name="name">wapio.compose.form</field><field name="model">wapio.compose</field>
+        <field name="arch" type="xml">
+            <form string="Send WhatsApp with Wapio">
+                <group>
+                    <field name="source_model" invisible="1"/><field name="source_id" invisible="1"/>
+                    <field name="company_id" readonly="1"/><field name="session_id" options="{'no_create': True}"/>
+                    <field name="recipient" placeholder="+212..."/><field name="text"/>
+                    <field name="include_pdf" invisible="source_model not in ['sale.order', 'account.move']"/>
+                    <field name="consent"/>
+                </group>
+                <div class="alert alert-info" role="status">Queue one requested or transactional message. The recipient, text and selected PDF will be sent to Wapio for WhatsApp delivery. A scheduled task submits it after saving. PDF preparation may take an additional minute.</div>
+                <footer><button name="action_queue" string="Queue message" type="object" class="oe_highlight"/><button string="Cancel" special="cancel"/></footer>
+            </form>
+        </field>
+    </record>
+</odoo>

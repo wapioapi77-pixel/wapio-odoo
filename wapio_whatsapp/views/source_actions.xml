@@ -1,0 +1,18 @@
+<odoo>
+    <record id="compose_partner" model="ir.actions.act_window">
+        <field name="name">Send WhatsApp with Wapio</field><field name="res_model">wapio.compose</field><field name="view_mode">form</field><field name="target">new</field>
+        <field name="binding_model_id" ref="base.model_res_partner"/><field name="binding_view_types">form</field><field name="group_ids" eval="[(4, ref('group_wapio_user'))]"/>
+    </record>
+    <record id="compose_lead" model="ir.actions.act_window">
+        <field name="name">Send WhatsApp with Wapio</field><field name="res_model">wapio.compose</field><field name="view_mode">form</field><field name="target">new</field>
+        <field name="binding_model_id" ref="crm.model_crm_lead"/><field name="binding_view_types">form</field><field name="group_ids" eval="[(4, ref('group_wapio_user'))]"/>
+    </record>
+    <record id="compose_sale" model="ir.actions.act_window">
+        <field name="name">Send WhatsApp with Wapio</field><field name="res_model">wapio.compose</field><field name="view_mode">form</field><field name="target">new</field>
+        <field name="binding_model_id" ref="sale.model_sale_order"/><field name="binding_view_types">form</field><field name="group_ids" eval="[(4, ref('group_wapio_user'))]"/>
+    </record>
+    <record id="compose_invoice" model="ir.actions.act_window">
+        <field name="name">Send WhatsApp with Wapio</field><field name="res_model">wapio.compose</field><field name="view_mode">form</field><field name="target">new</field>
+        <field name="binding_model_id" ref="account.model_account_move"/><field name="binding_view_types">form</field><field name="group_ids" eval="[(4, ref('group_wapio_user'))]"/>
+    </record>
+</odoo>

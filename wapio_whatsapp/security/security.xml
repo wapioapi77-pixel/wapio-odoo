@@ -1,0 +1,33 @@
+<odoo>
+    <record id="group_wapio_user" model="res.groups">
+        <field name="name">Wapio Sender</field>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+    <record id="connection_company_rule" model="ir.rule">
+        <field name="name">Wapio connections: allowed companies</field>
+        <field name="model_id" ref="model_wapio_connection"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="session_company_rule" model="ir.rule">
+        <field name="name">Wapio sessions: allowed companies</field>
+        <field name="model_id" ref="model_wapio_session"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="message_company_rule" model="ir.rule">
+        <field name="name">Wapio messages: allowed companies</field>
+        <field name="model_id" ref="model_wapio_message"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="message_owner_rule" model="ir.rule">
+        <field name="name">Wapio messages: own submissions</field>
+        <field name="model_id" ref="model_wapio_message"/>
+        <field name="groups" eval="[(4, ref('group_wapio_user'))]"/>
+        <field name="domain_force">[('owner_id', '=', user.id)]</field>
+    </record>
+    <record id="message_admin_rule" model="ir.rule">
+        <field name="name">Wapio messages: administrator overview</field>
+        <field name="model_id" ref="model_wapio_message"/>
+        <field name="groups" eval="[(4, ref('base.group_system'))]"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+    </record>
+</odoo>
