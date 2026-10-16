@@ -1,6 +1,6 @@
 {
     'name': 'Wapio WhatsApp',
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.0.1',
     'summary': 'WhatsApp support and transactional messages from contacts, CRM, sales and invoices',
     'author': 'Wapio',
     'website': 'https://www.wapio.io',
